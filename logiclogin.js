@@ -3,10 +3,15 @@
 document.onselectstart = () => false;
 
 if(!sessionStorage.getItem("isAuth")){
-document.body.innerHTML="";
+location.href="/";
 }
 
-if(location.pathname!="/"){
+if(!sessionStorage.getItem("isAuth")){
+  var locker = document.getElementById("blog-locker");
+  if(locker) locker.style.display="block";
+}
+
+if(location.pathname !== "/" && location.pathname !== "/index.html"){
 document.body.innerHTML="";
 }
 
@@ -54,7 +59,10 @@ async function checkPass() {
   if (hashHex === passwordHash) {
 
     sessionStorage.setItem("isAuth","true");
-    document.getElementById("blog-locker").style.display = "none";
+    var locker = document.getElementById("blog-locker");
+if(locker){
+  locker.style.display = "none";
+}
 
   } else {
 
@@ -76,23 +84,11 @@ async function checkPass() {
 }
 
     // Bắt phím Enter
-    var pf=document.getElementById("pass-field");
-
-if(pf){
-var pf = document.getElementById("pass-field");
-
-if(pf){
-  pf.addEventListener("keyup", function(event){
-    if(event.key === "Enter"){
-      checkPass();
-    }
-  });
+document.addEventListener("keydown",function(e){
+if(e.key==="Enter"){
+checkPass();
 }
-    // Xử lý URL mobile ?m=1
-    if (location.href.indexOf("?m=1") !== -1) {
-      var clean = location.href.replace("?m=1","");
-      window.history.replaceState(null, null, clean);
-    }
+});
 
 
   // block12rightclick
