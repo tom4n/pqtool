@@ -252,13 +252,15 @@ async function checkPass() {
     var pf=document.getElementById("pass-field");
 
 if(pf){
-pf.addEventListener("keyup",function(event){
-if(event.key==="Enter"){checkPass();}
-});
-}
-      if (event.key === "Enter") { checkPass(); }
-    });
+var pf = document.getElementById("pass-field");
 
+if(pf){
+  pf.addEventListener("keyup", function(event){
+    if(event.key === "Enter"){
+      checkPass();
+    }
+  });
+}
     // Xử lý URL mobile ?m=1
     if (location.href.indexOf("?m=1") !== -1) {
       var clean = location.href.replace("?m=1","");
