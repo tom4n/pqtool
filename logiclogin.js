@@ -1,9 +1,11 @@
-if(location.pathname!="/"){
+
+// <![CDATA[
+document.onselectstart = () => false;
+
+if(!sessionStorage.getItem("isAuth")){
 document.body.innerHTML="";
 }
 
-// <![CDATA[
-  
 if(location.pathname!="/"){
 document.body.innerHTML="";
 }
